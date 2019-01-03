@@ -26,12 +26,17 @@ public class MainClass {
 				String accountChoice = in.nextLine();
 				if(accountChoice.equals("Checking"))
 				{
-					
-				 
+					System.out.println("Please enter the name of the owner");
+					String str = in.next();
+					String name = str;
+					accounts.add(new CheckingAccount(name, TRANSACTION_FEE, TRANSACTION_FEE, FINAL_TRANSACTIONS));
 				}
 				else if(accountChoice.equals("Savings"))
 				{
-					
+					System.out.println("Please enter the name of the owner");
+					String str = in.next();
+					String name = str;
+					accounts.add(new SavingsAccount(name, TRANSACTION_FEE, TRANSACTION_FEE, TRANSACTION_FEE, TRANSACTION_FEE));
 				}
 				else
 				{
