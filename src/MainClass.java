@@ -65,7 +65,7 @@ public class MainClass {
 							int acctnum = (int)askNum("Please enter your account number");
 							BankAccount b = getAccByNum(acctnum); 
 							
-							double amt = promptDouble("Please enter the amount you would like to deposit (it can be 0 dollars)");
+							double amt = askNum ("Please enter the amount you would like to deposit (it can be 0 dollars)");
 							try
 							{
 								b.deposit(amt);
@@ -74,6 +74,8 @@ public class MainClass {
 							{
 								System.out.println("Invalid amount, please try again");
 							}
+							
+							
 							break;
 						}
 					}
