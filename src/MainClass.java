@@ -62,7 +62,7 @@ public class MainClass {
 						{	
 						case "D":
 							
-							int acctnum = (int)promptDouble("Please enter your account number");
+							int acctnum = (int)askNum("Please enter your account number");
 							BankAccount b = getAccByNum(acctnum); 
 							
 							double amt = promptDouble("Please enter the amount you would like to deposit (it can be 0 dollars)");
@@ -90,7 +90,7 @@ public class MainClass {
 		}
 		
 	}
-	private static double promptDouble(String msg)
+	private static double askNum(String msg)
 	{	
 		//there was a compiler error if a boolean parameter was used in the while
 		while(true)
