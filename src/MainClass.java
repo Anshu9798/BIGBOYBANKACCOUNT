@@ -27,7 +27,9 @@ public class MainClass {
 			switch(choice)
 			{
 				case "A":
-				
+					boolean choose = true;
+					while(choose)
+					{
 					System.out.println("Would you like to add a Checking or Savings Account?\n");
 					String accountChoice = in.nextLine();
 					if(accountChoice.equals("Checking"))
@@ -39,6 +41,7 @@ public class MainClass {
 						accounts.add(C);
 						System.out.println("account created");
 						System.out.println(C);
+						choose = false;
 					}
 					else if(accountChoice.equals("Savings"))
 					{
@@ -49,10 +52,12 @@ public class MainClass {
 						accounts.add(S);
 						System.out.println("account created");
 						System.out.println(S);
+						choose = false;
 					}
 					else
 					{
 						System.out.println("Please enter either 'Checking' or 'Savings'\n");
+					}
 					}
 					break;
 				
@@ -84,12 +89,14 @@ public class MainClass {
 							try
 							{
 								getAccByNum(acctnumT).deposit(amt);
+								System.out.println(getAccByNum(acctnumT));
 							}
 							catch(Exception e)
 							{
-								System.out.println("Invalid amount, please try again\n");
+								e.getMessage();
+								System.out.println("please try again\n");
 							}
-							System.out.println(getAccByNum(acctnumT));
+							
 							break;
 							
 						case "W":
@@ -111,12 +118,14 @@ public class MainClass {
 							try
 							{
 								getAccByNum(acctnumW).withdraw(amtW);
+								System.out.println(getAccByNum(acctnumW));
 							}
 							catch(Exception e)
 							{
-								System.out.println("Invalid amount, please try again\n");
+								e.getMessage();
+								System.out.println("please try again\n");
 							}
-							System.out.println(getAccByNum(acctnumW));
+							
 							break;
 							
 						case "T":
@@ -134,17 +143,19 @@ public class MainClass {
 									}	
 								correct3 = false;
 							}
-							double amtT = askNum("Please enter the amount you would like to withdraw\n");
+							double amtT = askNum("Please enter the amount you would like to transfer\n");
 							try
 							{
 								getAccByNum(acctnumT1).transfer(getAccByNum(acctnumT2), amtT);
+								System.out.println(getAccByNum(acctnumT1));
+								System.out.println(getAccByNum(acctnumT2));
 							}
 							catch(Exception e)
 							{
-								System.out.println("Invalid amount, please try again\n");
+								e.getMessage();
+								System.out.println("please try again\n");
 							}
-							System.out.println(getAccByNum(acctnumT1));
-							System.out.println(getAccByNum(acctnumT2));
+							
 							break;
 						
 						case "G":
