@@ -24,7 +24,7 @@ public abstract class BankAccount {
 	}
 	/**
 	 * allows user to deposit a specified amount into a BankAccount object
-	 * @param amt
+	 * @param amt the amount being deposited
 	 */
 	public void deposit(double amt)
 	{
@@ -33,7 +33,7 @@ public abstract class BankAccount {
 	}
 	/**
 	 * allows user to withdraw a specified amount into a BankAccount object
-	 * @param amt
+	 * @param amt the amount being withdrawn
 	 */
 	public void withdraw(double amt)
 	{
@@ -42,7 +42,7 @@ public abstract class BankAccount {
 	}
 	/**
 	 * returns the name of a specified BankAccount object
-	 * @return
+	 * @return String name of the account
 	 */
 	public String getName()
 	{
@@ -50,7 +50,7 @@ public abstract class BankAccount {
 	}
 	/**
 	 * returns the balance of a specified BankAccount object
-	 * @return
+	 * @return double balance of the account
 	 */
 	public double getBalance()
 	{
@@ -58,20 +58,21 @@ public abstract class BankAccount {
 	}
 	/**
 	 * returns the account number of a specified BankAccount object
-	 * @return
+	 * @return int the account number
 	 */
 	public int getAccNum()
 	{
 		return acctNum;
 	}
 	/**
-	 * to be implemented in BankAccount subclasses
+	 * This method will run at the end of every month 
+	 * will be specifically implemented in the subclasses of BankAccount
 	 */
 	public abstract void endOfMonthUpdate();
 	/**
 	 * allows user to transfer a specified amount from one account to another
-	 * @param other
-	 * @param amt
+	 * @param other the account being transferred to
+	 * @param amt the amount being transferred
 	 */
 	public void transfer(BankAccount other, double amt)
 	{
