@@ -22,22 +22,30 @@ public class CheckingAccount extends BankAccount{
 		 TRANSACTION_FEE = tf;
 		 FREE_TRANS = freeTrans;
 	}
+	/**
+	 * a deposit method that also allows the user to have an allotted number of free transactions
+	 * if the number of free transactions is passed, a transaction fee is exacted
+	 */
 	public void deposit(double amt)
 	{			
 		if(amt> 0)
 		{
 		super.deposit(amt);
 		numTransactions++;
-		if(numTransactions > FREE_TRANS)
-		{
-			super.withdraw(TRANSACTION_FEE);
-		}
+			if(numTransactions > FREE_TRANS)
+			{
+				super.withdraw(TRANSACTION_FEE);
+			}
 		}
 		else
 		{
 			throw new IllegalArgumentException();
 		}
 	}
+	/**
+	 * allows user to withdraw a specified amount 
+	 * original balance has to be greater than 0 and the amount withdrawn has to be greater than 0
+	 */
 	public void withdraw(double amt)
 	{
 		if(this.getBalance() > 0 && amt > 0)
@@ -60,6 +68,11 @@ public class CheckingAccount extends BankAccount{
 				throw new IllegalArgumentException();
 			}
 	}
+	/**
+	 * a withdraw method that requires the existing balance of the BankAccount to be greater than 0 after the transaction
+	 * amount transfered  must be non-negative
+	 * the BankAccounts must be under the same name
+	 */
 	public void transfer(BankAccount other, double amt)
 	{
 		if(other.getName().equals(this.getName()))
@@ -79,6 +92,10 @@ public class CheckingAccount extends BankAccount{
 			throw new IllegalArgumentException("Names don't match");
 		}
 	}
+	/**
+	 * 
+	 * sets the number of transactions to 0 at the end of every month
+	 */
 	public void endOfMonthUpdate()
 	{
 		numTransactions = 0;
