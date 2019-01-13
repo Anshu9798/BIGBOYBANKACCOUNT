@@ -19,7 +19,9 @@ public class MainClass {
 		final int FREE_TRANSACTIONS = 10;
 		
 		
-	
+	/**
+	 * gives the user the choice of either creating an account, performing a transaction, or terminate the program
+	 */
 		while(true) 
 		{
 			System.out.println("To create an account enter A, to perform a transaction type T, or P to terminate the program\n");
@@ -66,6 +68,9 @@ public class MainClass {
 					boolean choosing = true;
 					while(choosing)
 					{
+						/**
+						 * gives the user a choice of either depositing, withdrawing, transferring, or getting a list of all account numbers in the array-list
+						 */
 						System.out.println("Enter D to deposit, W to withdraw, T to Transfer, or G to get a list of account numbers\n");
 						String transchoice = in.nextLine();
 						switch(transchoice)
@@ -135,7 +140,7 @@ public class MainClass {
 							while(correct3)
 							{
 								acctnumT1 = (int)askNum("Please enter your account number\n"); 
-								acctnumT2 = (int)askNum("Please enter the number of the account you are transferring to\n");
+								acctnumT2 = (int)askNum("Please enter the number of the account you are transferring to. remember that the accounst must be under the same name\n");
 								
 								if(getAccByNum(acctnumT1) == null || getAccByNum(acctnumT2) == null)
 									{
@@ -177,7 +182,11 @@ public class MainClass {
 			}	
 		}
 	}
-	
+	/**
+	 * returns the type( Checking or Savings) of a specified BankAccount
+	 * @param b
+	 * @return
+	 */
 	private static String getType(BankAccount b)
 	{
 		if(b instanceof CheckingAccount)
@@ -189,7 +198,11 @@ public class MainClass {
 			return "Savings";
 		}
 	}
-	
+	/**
+	 * prompts for the account number and converts it to a double type
+	 * @param msg
+	 * @return
+	 */
 	private static double askNum(String msg)
 	{	
 		//there was a compiler error if a boolean parameter was used in the while
@@ -203,6 +216,11 @@ public class MainClass {
 			}
 		}
 	}
+	/**
+	 * checks the array-list to see if the account number given by the user matches that of any in the array-list
+	 * @param n
+	 * @return
+	 */
 	private static BankAccount getAccByNum(int n)
 	{
 		for( BankAccount a : accounts)
@@ -211,6 +229,12 @@ public class MainClass {
 		}
 		return null;
 	}
+	/**
+	 * Checks to see if the provided number is actually numeric
+	 * if not, the method returns false and ends the method
+	 * @param n
+	 * @return
+	 */
 	private static boolean isNumeric(String n)
     {
         try
@@ -222,6 +246,5 @@ public class MainClass {
         {
             return false;
         }
-    }
-	
+    }	
 }
