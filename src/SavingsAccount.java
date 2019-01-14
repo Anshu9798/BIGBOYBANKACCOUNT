@@ -1,4 +1,8 @@
-
+/**
+ * Savings Account
+ * @author Anshu Nunemunthala
+ *Period 6
+ */
 public class SavingsAccount extends BankAccount
 {
 	private final double MIN_BAL;
@@ -6,6 +10,14 @@ public class SavingsAccount extends BankAccount
 	
 	private double intRate;
 	
+	/**
+	 * creates a savings account
+	 * @param n bank account name
+	 * @param b bank account balance 
+	 * @param r interest rate
+	 * @param mb minimum balance
+	 * @param mbf minimum balance fee
+	 */
 	public SavingsAccount(String n, double b, double r, double mb, double mbf)
 	{
 		super(n,b);
@@ -13,6 +25,14 @@ public class SavingsAccount extends BankAccount
 		MIN_BAL = mb;
 		MIN_BAL_FEE = mbf;
 	}
+	/**
+	 * creates a savings account, initialized with no balance
+	 * @param n bank account name
+	 * @param b bank account balance 
+	 * @param r interest rate
+	 * @param mb minimum balance
+	 * @param mbf minimum balance fee
+	 */
 	public SavingsAccount(String n, double r, double mb, double mbf)
 	{
 		super(n,0);
@@ -23,6 +43,7 @@ public class SavingsAccount extends BankAccount
 	/**
 	 * a withdraw method that specifies that balance cannot go negative after transaction
 	 * there is also a minimum balance that, if crossed, results in a fee withdrawn from the balance
+	 * @param amt amount being withdrawn
 	 */
 	public void withdraw(double amt)
 	{
@@ -43,6 +64,8 @@ public class SavingsAccount extends BankAccount
 	/**
 	 * a standard transfer method 
 	 * once again names must be the same for both BankAccounts and balance cannot go negative
+	 * @param other the BankAccount being transferred to
+	 * @param amt amount being transferred
 	 */
 	public void transfer(BankAccount other, double amt)
 	{
