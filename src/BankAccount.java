@@ -1,4 +1,8 @@
-
+/**
+ * Bank Account
+ * @author Anshu Nunemunthala
+ *Period 6
+ */
 public abstract class BankAccount {
 
 	private static int nextAccNum;
@@ -7,6 +11,10 @@ public abstract class BankAccount {
 	private int acctNum;
 	private double balance;
 	
+	/**
+	 * creates a BankAccount with 0 balance
+	 * @param n BankAccount name
+	 */
 	public BankAccount(String n)
 	{
 		name  = n;
@@ -15,6 +23,11 @@ public abstract class BankAccount {
 		nextAccNum++;
 	}
 	
+	/**
+	 * creates a BankAccount, with a specified balance
+	 * @param n BankAccount name
+	 * @param b BankAccoutn balance
+	 */
 	public BankAccount(String n, double b)
 	{
 		name  = n;
