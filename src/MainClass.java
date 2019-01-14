@@ -1,3 +1,8 @@
+/**
+ * Main Class
+ * @author Anshu Nunemunthala
+ *Period 6
+ */
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,7 +44,7 @@ public class MainClass {
 						System.out.println("Please enter the name of the owner\n");
 						String str = in.nextLine();
 						String nameC = str;
-						BankAccount C = new CheckingAccount(nameC, OVER_DRAFT_FEE, TRANSACTION_FEE, FREE_TRANSACTIONS);
+						BankAccount C = new CheckingAccount(nameC, MIN_BAL, OVER_DRAFT_FEE, TRANSACTION_FEE, FREE_TRANSACTIONS);
 						accounts.add(C);
 						System.out.println("account created");
 						System.out.println(C);
@@ -50,7 +55,7 @@ public class MainClass {
 						System.out.println("Please enter the name of the owner\n");
 						String str = in.nextLine();
 						String nameS = str;
-						BankAccount S = new SavingsAccount(nameS, TRANSACTION_FEE, RATE, MIN_BAL, MIN_BAL_FEE);
+						BankAccount S = new SavingsAccount(nameS, MIN_BAL, RATE, MIN_BAL, MIN_BAL_FEE);
 						accounts.add(S);
 						System.out.println("account created");
 						System.out.println(S);
@@ -71,7 +76,7 @@ public class MainClass {
 						/**
 						 * gives the user a choice of either depositing, withdrawing, transferring, or getting a list of all account numbers in the array-list
 						 */
-						System.out.println("Enter D to deposit, W to withdraw, T to Transfer, or G to get a list of account numbers\n");
+						System.out.println("Enter D to deposit, W to withdraw, T to Transfer, or G to get a list of your account numbers\n");
 						String transchoice = in.nextLine();
 						switch(transchoice)
 						{	
@@ -83,14 +88,13 @@ public class MainClass {
 							{
 								acctnumT = (int)askNum("Please enter your account number\n"); 
 								
-								if(getAccByNum(acctnumT) == null)
+								if(getAccByNum(acctnumT) != null)
 									{
-										System.out.println("Please enter an actual account number\n");
-									}	
-								correct = false;
+										correct = false;
+									}
 							}
 							
-							double amt = askNum("Please enter the amount you would like to deposit (it can be 0 dollars)\n");
+							double amt = askNum("Please enter the amount you would like to deposit\n");
 							try
 							{
 								getAccByNum(acctnumT).deposit(amt);
@@ -99,7 +103,7 @@ public class MainClass {
 							catch(Exception e)
 							{
 								e.getMessage();
-								System.out.println("please try again\n");
+								System.out.println("transaction not authorized\n");
 							}
 							
 							break;
@@ -164,11 +168,19 @@ public class MainClass {
 							break;
 						
 						case "G":
-							
+	
+							boolean match = false;
+							System.out.println("Please enter your name");
+							String nameG = in.nextLine();
 							for(BankAccount a : accounts)
 							{
-								System.out.println(getType(a) + "\t" +a);
+								if(a.getName().equals(nameG)) 
+								{
+									System.out.println(getType(a) + "\t" +a);
+									match = true;
+								}
 							}
+							if(!match) System.out.println("No matches were found");
 						}
 					}
 					break;
@@ -184,24 +196,24 @@ public class MainClass {
 	}
 	/**
 	 * returns the type( Checking or Savings) of a specified BankAccount
-	 * @param b
-	 * @return
+	 * @param b the BankAccount entered
+	 * @return String Checking or Savings to indicate the type of BankAccount
 	 */
 	private static String getType(BankAccount b)
 	{
-		if(b instanceof CheckingAccount)
-		{
-			return "Checking";
-		}
-		else
-		{
-			return "Savings";
-		}
+			if(b instanceof CheckingAccount)
+			{
+				return "Checking";
+			}
+			else
+			{
+				return "Savings";
+			}
 	}
 	/**
 	 * prompts for the account number and converts it to a double type
-	 * @param msg
-	 * @return
+	 * @param msg the amount entered by the user in String form
+	 * @return double the double version of the deposit amount
 	 */
 	private static double askNum(String msg)
 	{	
@@ -218,8 +230,8 @@ public class MainClass {
 	}
 	/**
 	 * checks the array-list to see if the account number given by the user matches that of any in the array-list
-	 * @param n
-	 * @return
+	 * @param n the integer entered by the user
+	 * @return BnankAccount if a BankAccount is found that matches the entered number, it returns the BankAccount
 	 */
 	private static BankAccount getAccByNum(int n)
 	{
@@ -232,8 +244,8 @@ public class MainClass {
 	/**
 	 * Checks to see if the provided number is actually numeric
 	 * if not, the method returns false and ends the method
-	 * @param n
-	 * @return
+	 * @param n the String entered by the user which is being parsed
+	 * @return boolean represents whether or not the number is numeric or not
 	 */
 	private static boolean isNumeric(String n)
     {
